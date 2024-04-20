@@ -1,3 +1,5 @@
+import time
+
 class Nodo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -5,6 +7,10 @@ class Nodo:
 
     def agregar_conexion(self, nodo):
         self.conexiones.append(nodo)
+
+    def eliminar_conexion(self, nodo):
+        if nodo in self.conexiones:
+            self.conexiones.remove(nodo)
 
     def enviar_mensaje(self, mensaje):
         print(f'{self.nombre} envía: {mensaje}')
@@ -27,4 +33,12 @@ cliente1.agregar_conexion(servidor)
 cliente2.agregar_conexion(servidor)
 cliente3.agregar_conexion(servidor)
 
-servidor.enviar_mensaje(input())
+servidor.enviar_mensaje(input("Escribe un mensaje para tus clientes: "))
+
+servidor.eliminar_conexion(cliente3)
+
+print("Reconectando con el servidor...")
+
+time.sleep(5)
+
+print("La conexión ha vuelto")
